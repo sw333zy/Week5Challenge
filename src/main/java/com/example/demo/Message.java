@@ -16,13 +16,11 @@ public class Message {
     private String title;
     @NotNull
     private String content;
-
-    private Date date = new Date();
-
-
-
     @NotNull
     private String postedBy;
+    private String pic;
+    private Date date = new Date();
+
 
     public Message() {
     }
@@ -65,5 +63,13 @@ public class Message {
 
     public void setDate(Date date) {
         this.date = date;
+    }
+
+    public String getPic() {
+        return pic;
+    }
+
+    public void setPic(String pic) {
+        this.pic = pic;
     }
 }

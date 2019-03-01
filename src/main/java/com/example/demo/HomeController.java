@@ -1,20 +1,24 @@
 package com.example.demo;
 
+import com.cloudinary.utils.ObjectUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
+import java.io.IOException;
+import java.util.Map;
 
 @Controller
 public class HomeController {
     @Autowired
     MessageRepository messageRepository;
+
+    @Autowired
+    CloudinaryConfig cloudc;
 
     @RequestMapping("/")
     public String listMessages(Model model){
@@ -37,6 +41,24 @@ public class HomeController {
         messageRepository.save(message);
         return "redirect:/";
     }
+
+//    @PostMapping("/add")
+//    public String processMessage(@ModelAttribute Message message,
+//                               @RequestParam("file") MultipartFile file){
+//        if(file.isEmpty()){
+//            return "redirect:/";
+//        }
+//        try {
+//            Map uploadResult = cloudc.upload(file.getBytes(),
+//                    ObjectUtils.asMap("resourcetype", "auto"));
+//            message.setPic(uploadResult.get("url").toString());
+//            messageRepository.save(message);
+//        } catch (IOException e){
+//            e.printStackTrace();
+//            return "redirect:/";
+//        }
+//        return "redirect:/";
+//    }
 
     @RequestMapping("/detail/{id}")
     public String showMessage(@PathVariable("id") long id, Model model)

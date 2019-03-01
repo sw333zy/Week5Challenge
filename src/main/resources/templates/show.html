@@ -4,17 +4,15 @@
 
 </head>
 <body>
+<div class="container">
 <nav th:replace="base :: navbar"></nav>
-
-<a href="/">Show All Thoughts</a><br/>
-Title :<span th:text="${message.title}"></span><br/>
-Thought :<span th:text="${message.content}"></span><br/>
-Posted Date :<span th:text="${message.postedDate}" ></span><br/>
-Posted By :<span th:text="${message.postedBy}" ></span><br/>
-
-<a th:href="@{/delete/{id}(id=${message.id})}">Delete this thought</a>
+<br/>
+<a href="/add">Add a new thought?</a><br/>
+<br/>
+<div th:replace="base :: message"></div>
 
 <nav th:replace="base :: foot"></nav>
+</div>
 <th:block th:replace="base :: jslinks"></th:block>
 </body>
 </html>

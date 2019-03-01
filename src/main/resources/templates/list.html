@@ -3,16 +3,15 @@
 <head th:replace="base :: headstuff">
 </head>
 <body>
-<nav th:replace="base :: navbar"></nav>
-
-<a href="/add">Add a new thought?</a><br/>
-
-<div th:each="message : ${messages}">
-    <div th:replace="base :: message"></div>
+<div class="container"><nav th:replace="base :: navbar"></nav>
+    <br/>
+    <a href="/add">Add a new thought?</a><br/>
+    <br/>
+    <div th:each="message : ${messages}">
+        <div th:replace="base :: message"></div>
+    </div>
+    <nav th:replace="base :: foot"></nav>
+    <th:block th:replace="base :: jslinks"></th:block>
 </div>
-
-
-<nav th:replace="base :: foot"></nav>
-<th:block th:replace="base :: jslinks"></th:block>
 </body>
 </html>

@@ -3,16 +3,18 @@
 <head th:replace="base :: headstuff">
 </head>
 <body>
-<nav th:replace="base :: navbar"></nav>
 
 
 <div class="container">
+    <nav th:replace="base :: navbar"></nav>
+
     <h5>Post your thoughts</h5>
     The time is: <i th:text="${execInfo.now.time}"></i><br/><br/>
     <form action="#"
           method="post"
           th:action="@{/process}"
-          th:object="${message}">
+          th:object="${message}"
+          enctype="multipart/form-data">
         <input th:field="*{id}" type="hidden"/>
         <div class="form-group">
             <label for="thoughtTitle"><b>Title</b></label>
@@ -35,28 +37,13 @@
             <span th:errors="*{postedBy}"
                   th:if="${#fields.hasErrors('postedBy')}"></span><br/>
         </div>
+        <input type="file" name="file"/>
         <input type="submit" value="Submit"/>
     </form>
-</div>
-
-<!--<form action="#"-->
-<!--th:action="@{/process}"-->
-<!--th:object="${message}"-->
-<!--method="post">-->
-<!--<input type="hidden" th:field="*{id}"/>-->
-<!--Title :<input type="text" th:field="*{title}"/>-->
-<!--<span th:if="${#fields.hasErrors('title')}"-->
-<!--th:errors="*{title}"></span><br/>-->
-<!--Thought :<textarea rows="3" th:field="*{content}"/>-->
-<!--<span th:if="${#fields.hasErrors('content')}"-->
-<!--th:errors="{content}"></span><br/>-->
-<!--Posted By :<input type="text" th:field="*{postedBy}"/>-->
-<!--<span th:if="${#fields.hasErrors('postedBy')}"-->
-<!--th:errors="*{postedBy}"></span><br/>-->
-<!--<input type="submit" value="Submit"/>-->
-<!--</form>-->
 
 <nav th:replace="base :: foot"></nav>
 <th:block th:replace="base :: jslinks"></th:block>
+</div>
+
 </body>
 </html>
