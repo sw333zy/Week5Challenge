@@ -10,10 +10,7 @@
 
     <h5>Post your thoughts</h5>
     The time is: <i th:text="${execInfo.now.time}"></i><br/><br/>
-    <form action="#"
-          method="post"
-          th:action="@{/process}"
-          th:object="${message}"
+    <form method="POST" action="/add" th:object="${message}"
           enctype="multipart/form-data">
         <input th:field="*{id}" type="hidden"/>
         <div class="form-group">
